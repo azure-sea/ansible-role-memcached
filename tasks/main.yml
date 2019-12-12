@@ -1,0 +1,29 @@
+---
+# tasks file for memcached
+- name: Include variables
+  include_vars: main.yml
+
+- name: Define Memcached user
+  set_fact:
+    memcached_user: "{{ memcached_app_user }}"
+  when: memcached_user is not defined
+  
+- name: Define Memcached memory size
+  set_fact:
+    memcached_memory_limit: "{{ ansible_memtotal_mb // 2 }}"
+
+- name: Install Memcached Server
+  yum: name=memcached state=present
+  register: memcached_install_status
+
+- name: Copy Memcached Server Configure
+  template: 
+    src: memcached.j2 
+    dest: "{{ memcached_config_file }}" 
+    owner: root 
+    group: root 
+    mode: 0644
+  notify: Restart Memcached Server
+
+- name: Start Memcached Server and add PowerBoot
+  systemd: name=memcached state=started enabled=yes
