@@ -1,0 +1,14 @@
+# Default listen port is 11211
+PORT="{{ memcached_port }}"
+
+# Memcached run user
+USER="{{ memcached_user }}"
+
+# Maximum connection. The default value 1024
+MAXCONN="{{ memcached_connections }}"
+
+# Memory setup
+CACHESIZE="{{ memcached_memory_limit }}"
+
+# Extra options
+OPTIONS="-l {{ memcached_listen_ip }} {{ memcached_log_verbosity }} >> {{ memcached_log_file }} 2>&1"
