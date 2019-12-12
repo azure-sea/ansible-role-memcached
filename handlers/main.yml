@@ -1,0 +1,5 @@
+---
+# handlers file for memcached
+- name: Restart Memcached Server
+  systemd: name=memcached state=restarted
+  when: not memcached_install_status.changed
