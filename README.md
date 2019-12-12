@@ -46,13 +46,13 @@ The variables `memcached_memory_limit` in the roles are set to half of the remot
 4. memcached日志文件的位置。\
  The location of the memcached log file.
 ```
-    memcached_log_file: /var/log/memcached/memcached.log
+memcached_log_file: /var/log/memcached/memcached.log
 ```
 5. 通常memcached不会记录任何内容。更改为“-v”以启用日志记录，或更改为“-vv”以进行调试日志记录。\
  Normally memcached does not log anything. Change to "-v" to enable logging or to "-vv" for debug logging.
 
 ```
-    memcached_log_verbosity: ""
+memcached_log_verbosity: ""
 ```
 
 Dependencies
